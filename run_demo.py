@@ -185,12 +185,41 @@ async def demo_evals():
         ))
     print_summary(results, k=3)
 
+def demo_live_invoice():
+    print("\n" + "=" * 65)
+    print("BONUS — Type any invoice live")
+    print("=" * 65)
+
+    from agents.po_database import lookup_po, check_duplicate_invoice
+
+    raw = """
+Invoice #INV-5001
+Vendor: Acme Office Supplies
+PO Reference: PO-1003
+Amount Due: $800.00
+Date: 2026-06-20
+"""
+    print(raw)
+
+    flags = []
+    dup = check_duplicate_invoice("INV-5001")
+    if dup["is_duplicate"]:
+        flags.append("duplicate_invoice")
+
+    po = lookup_po("PO-1003")
+    if po["status"] == "closed":
+        flags.append("po_already_closed")
+
+    recommendation = "hold_for_review" if flags else "approve"
+    print(f"  → recommendation: {recommendation}")
+    print(f"  → flags: {flags}")
 
 async def main():
     await demo_agents()
     await demo_policy()
     demo_observability()
     await demo_evals()
+    demo_live_invoice()
     print("\n" + "=" * 65)
     print("Demo complete.")
     print("=" * 65)
