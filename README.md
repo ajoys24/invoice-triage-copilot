@@ -5,6 +5,11 @@ A multi-agent AI system that reads vendor invoices and decides — automatically
 **Track:** Agents for Business  
 **Demonstrates:** All 5 course days — ADK multi-agent system, custom MCP server, Agent Skills, full security policy server, evaluation harness with LLM-as-judge
 
+
+## Architecture
+
+![Invoice Triage Copilot � Architecture](docs/architecture.png)
+
 ---
 
 ## What it does
@@ -232,3 +237,4 @@ Harmless — means no Jaeger collector is running. Spans are still tracked in-me
 ## License
 
 MIT
+
