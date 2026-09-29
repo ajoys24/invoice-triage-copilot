@@ -1,4 +1,4 @@
-# Invoice Triage Copilot
+﻿# Invoice Triage Copilot
 
 A multi-agent AI system that reads vendor invoices and decides — automatically — whether they are safe to pay or need a human to review them. Built as a capstone for the **5-Day AI Agents Intensive Vibe Coding Course** (Google/Kaggle).
 
@@ -8,7 +8,7 @@ A multi-agent AI system that reads vendor invoices and decides — automatically
 
 ## Architecture
 
-![Invoice Triage Copilot � Architecture](docs/architecture.png)
+![Invoice Triage Copilot � Architecture](docs/architecture.png)
 
 ---
 
@@ -237,4 +237,5 @@ Harmless — means no Jaeger collector is running. Spans are still tracked in-me
 ## License
 
 MIT
+
 
