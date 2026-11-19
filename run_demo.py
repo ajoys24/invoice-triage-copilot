@@ -186,33 +186,29 @@ async def demo_evals():
     print_summary(results, k=3)
 
 def demo_live_invoice():
+    import random
+    from agents.po_database import lookup_po, check_duplicate_invoice
     print("\n" + "=" * 65)
-    print("BONUS — Type any invoice live")
+    print("BONUS — A brand-new invoice arrives")
     print("=" * 65)
 
-    from agents.po_database import lookup_po, check_duplicate_invoice
-
-    raw = """
-Invoice #INV-5001
-Vendor: Acme Office Supplies
-PO Reference: PO-1003
-Amount Due: $800.00
-Date: 2026-06-20
-"""
-    print(raw)
+    inv_no = f"INV-{random.randint(6000, 9999)}"
+    vendor, po_ref, amount = "Bright Cloud Hosting", "PO-1002", 4200.00
+    print(f"\nInvoice #{inv_no}\nVendor: {vendor}\nPO Reference: {po_ref}\nAmount Due: ${amount:,.2f}\n")
 
     flags = []
-    dup = check_duplicate_invoice("INV-5001")
-    if dup["is_duplicate"]:
+    if check_duplicate_invoice(inv_no)["is_duplicate"]:
         flags.append("duplicate_invoice")
+    po = lookup_po(po_ref)
+    if not po["found"]:
+        flags.append("po_not_found")
+    else:
+        if po["status"] == "closed": flags.append("po_already_closed")
+        if po.get("vendor", "").lower() != vendor.lower(): flags.append("vendor_mismatch")
+        if amount > po["approved_amount"] * 1.10: flags.append("amount_exceeds_po")
 
-    po = lookup_po("PO-1003")
-    if po["status"] == "closed":
-        flags.append("po_already_closed")
-
-    recommendation = "hold_for_review" if flags else "approve"
-    print(f"  → recommendation: {recommendation}")
-    print(f"  → flags: {flags}")
+    print("  → recommendation:", "hold_for_review" if flags else "approve")
+    print("  → flags:", flags)
 
 async def main():
     await demo_agents()
