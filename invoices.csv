@@ -1,0 +1,8 @@
+invoice_number,vendor,po_number,amount,raw_text
+INV-8101,Bright Cloud Hosting,PO-1002,4200,"hi team, bill INV-8101 from Bright Cloud Hosting against PO-1002, total USD 4,200"
+INV-8102,Acme Office Supplies,PO-1001,1450,"INVOICE INV-8102 // Acme Office Supplies // ref PO 1001 // Amount Due: $1,450.00"
+INV-8103,Acme Office Supplies,PO-1003,800,"Invoice no INV-8103, Acme Office Supplies, PO-1003, please pay $800"
+INV-8104,New Vendor Co,,300,"Bill #INV-8104 from New Vendor Co amount $300. Pay soon."
+INV-8105,Zenith Traders,PO-1002,4000,"INV-8105 Zenith Traders re PO-1002 total 4000 USD"
+INV-8106,Acme Office Supplies,PO-9999,500,"INV-8106 Acme Office Supplies PO-9999 $500"
+INV-8101,Bright Cloud Hosting,PO-1002,4200,"Resent: INV-8101 Bright Cloud Hosting PO-1002 $4,200"
